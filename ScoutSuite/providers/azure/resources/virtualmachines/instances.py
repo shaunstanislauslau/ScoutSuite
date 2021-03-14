@@ -12,6 +12,11 @@ class Instances(AzureResources):
         self.subscription_id = subscription_id
 
     async def fetch_all(self):
+        x = await self.facade.kubernetes.get_kubernetes_services(self.subscription_id)
+        for raw_instance in await self.facade.kubernetes.get_kubernetes_services(self.subscription_id):
+            id, instance = await self._parse_instance(raw_instance)
+            self[id] = instance
+
         for raw_instance in await self.facade.virtualmachines.get_instances(self.subscription_id):
             id, instance = await self._parse_instance(raw_instance)
             self[id] = instance

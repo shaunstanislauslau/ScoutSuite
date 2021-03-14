@@ -1,5 +1,6 @@
 from ScoutSuite.providers.azure.authentication_strategy import AzureCredentials
 from ScoutSuite.providers.azure.facade.aad import AADFacade
+from ScoutSuite.providers.azure.facade.kubernetes import KubernetesFacade
 from ScoutSuite.providers.azure.facade.rbac import RBACFacade
 from ScoutSuite.providers.azure.facade.keyvault import KeyVaultFacade
 from ScoutSuite.providers.azure.facade.network import NetworkFacade
@@ -50,6 +51,7 @@ class AzureFacade:
         self.rbac = RBACFacade(credentials)
         self.keyvault = KeyVaultFacade(credentials)
         self.virtualmachines = VirtualMachineFacade(credentials)
+        self.kubernetes = KubernetesFacade(credentials)
         self.network = NetworkFacade(credentials)
         self.securitycenter = SecurityCenterFacade(credentials)
         self.sqldatabase = SQLDatabaseFacade(credentials)
